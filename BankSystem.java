@@ -1,15 +1,15 @@
 package Task;
 import java.util.*;
 
-abstract class BankAccount{
-    private int id;
+abstract class BankAccount {    // Absraction
+    private int id;             // Encapsulation
     private String Name;
     protected double balance;
 
     public BankAccount(int id,String Name,double initial){
-        this.id=id;
-        this.Name=Name;
-        this.balance=initial;
+        this.id = id;
+        this.Name = Name;
+        this.balance = initial;
     }
 
     public abstract void deposit(double amount);
@@ -21,18 +21,18 @@ abstract class BankAccount{
     }
 
     public void getDetails(){
-        System.out.println("Account Holder: "+Name);
-        System.out.println("Account No: "+id);
-        System.out.println("Current Balance: "+balance);
+        System.out.println("Account Holder: " + Name);
+        System.out.println("Account No: " + id);
+        System.out.println("Current Balance: " + balance);
     }
 }
 
-class SavingsAccount extends BankAccount {
+class SavingsAccount extends BankAccount {      // Inheritance
     public SavingsAccount(String Name, int No, double initial) {
         super(No, Name, initial);
     }
 
-    public void deposit(double amount){
+    public void deposit(double amount){        // Polymorphism
         if (amount > 0) {
             balance += amount;
             System.out.println("Deposited $" + amount + " into Savings Account.");
