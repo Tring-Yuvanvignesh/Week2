@@ -65,10 +65,10 @@ class SavingsAccount extends BankAccount {      // Inheritance
 
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
-        } catch (InsufficientException e) {
+        } catch (InsufficientException e) { 
             System.err.println("Error: " + e.getMessage());
         }
-        
+
         // if (amount > 0 && amount <= balance) {
         //     balance -= amount;
         //     System.out.println("Withdrawn $" + amount + " from Savings Account.");
