@@ -24,22 +24,13 @@ class LinkedList {
         }
     }
 
-    public void delete(int key) {
-        if (head == null) return;
-
-        if (head.data == key) {
-            head = head.next;
-            return;
+    public Integer RemoveFirstElement() {
+        if (head == null) {
+            return null;
         }
-
-        Node temp = head;
-        while (temp.next != null && temp.next.data != key) {
-            temp = temp.next;
-        }
-
-        if (temp.next != null) {
-            temp.next = temp.next.next;
-        }
+        int FirstData = head.data;
+        head = head.next;
+        return FirstData;
     }
 
     public void display() {
@@ -64,8 +55,9 @@ public class LinkedListExample {
         System.out.println("Linked List:");
         list.display();
 
-        list.delete(20);
-        System.out.println("After deleting 20:");
+        list.RemoveFirstElement();
+        System.out.println("After Remove First Element ");
         list.display();
+
     }
 }
