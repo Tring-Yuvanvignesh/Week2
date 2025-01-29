@@ -36,12 +36,12 @@ class SavingsAccount extends BankAccount {      // Inheritance
             if (amount < 0) {
                 throw new IllegalArgumentException("Amount must be greater than zero.");
             }   
+            balance += amount;
+            System.out.println("Deposited $" + amount + " into Savings Account.");
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
         }
-
-        balance += amount;
-        System.out.println("Deposited $" + amount + " into Savings Account.");
+    
 
         //     System.out.println("Deposited $" + amount + " into Savings Account.");
         // if (amount > 0) {
