@@ -1,3 +1,5 @@
+import java.util.*;
+
 class AgeException extends Exception {
     public AgeException(String message) {
         super(message);
@@ -14,11 +16,18 @@ public class CustomException {
     }
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int age;
         try {
-            int age = 16;
+            System.err.println("Enter the age");
+            age = in.nextInt();
             checkAge(age);
-        } catch (AgeException e) {
-            System.out.println("Custom Exception Caught: " + e.getMessage());
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Error: Please enter a numeric value.");
+        }
+        catch (AgeException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
