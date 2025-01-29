@@ -31,13 +31,25 @@ class SavingsAccount extends BankAccount {      // Inheritance
         super(No, Name, initial);
     }
 
-    public void deposit(double amount){        // Polymorphism
-        if (amount > 0) {
-            balance += amount;
-            System.out.println("Deposited $" + amount + " into Savings Account.");
-        } else {
-            System.out.println("Deposit amount must be positive.");
+    public void deposit(double amount) {        // Polymorphism
+        try {
+            if (amount < 0) {
+                throw new IllegalArgumentException("Amount must be greater than zero.");
+            }   
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
         }
+
+        balance += amount;
+        System.out.println("Deposited $" + amount + " into Savings Account.");
+
+        //     System.out.println("Deposited $" + amount + " into Savings Account.");
+        // if (amount > 0) {
+        //     balance += amount;
+        //     System.out.println("Deposited $" + amount + " into Savings Account.");
+        // } else {
+        //     System.out.println("Deposit amount must be positive.");
+        // }
     }
 
     public void withdraw(double amount){
@@ -48,11 +60,15 @@ class SavingsAccount extends BankAccount {      // Inheritance
             if (amount > balance) {
                 throw new InsufficientException("Insufficient amount.");
             }
+            balance -= amount;
+            System.out.println("Withdrawn $" + amount + " from Savings Account.");
+
         } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         } catch (InsufficientException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
+        
         // if (amount > 0 && amount <= balance) {
         //     balance -= amount;
         //     System.out.println("Withdrawn $" + amount + " from Savings Account.");
