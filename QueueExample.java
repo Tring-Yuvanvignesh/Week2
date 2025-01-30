@@ -6,7 +6,7 @@ public class QueueExample {
 
         Queue<Integer> ticketQueue = new LinkedList<>();
 
-        ticketQueue.add(1);
+        ticketQueue.add(1);     
         ticketQueue.add(2);
         ticketQueue.add(3);
         ticketQueue.add(4);
@@ -14,11 +14,11 @@ public class QueueExample {
         System.out.println("Current Queue: " + ticketQueue);
 
         while (!ticketQueue.isEmpty()) {
-            int servedPerson = ticketQueue.poll();
-            System.out.println("Person Number "+servedPerson + " got their ticket.");
+            int Person = ticketQueue.poll();
+            System.out.println("Person Number "+ Person + " got their ticket.");
             System.out.println("Updated Queue: " + ticketQueue);
         }
 
-        System.out.println("All tickets have been served!");
+        System.out.println("All Person have their Ticket!");
     }
 }
