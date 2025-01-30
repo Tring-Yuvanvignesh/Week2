@@ -9,7 +9,7 @@ class Node {
 }
 
 class LinkedList {
-    private Node head;
+    Node head;
 
     public void insert(int data) {
         Node newNode = new Node(data);
@@ -28,16 +28,16 @@ class LinkedList {
         if (head == null) {
             return null;
         }
-        int FirstData = head.data;
+        int FirstElement = head.data;
         head = head.next;
-        return FirstData;
+        return FirstElement;
     }
 
     public void display() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " -> ");
-            temp = temp.next;
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " -> ");
+            curr = curr.next;
         }
         System.out.println("null");
     }
