@@ -86,7 +86,7 @@ class ShoppingCart {
 // Main Class
 public class ShoppingApp {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         ShoppingCart cart = new ShoppingCart();
 
         // Available Products List
@@ -99,23 +99,25 @@ public class ShoppingApp {
         System.out.println("Welcome to the Shopping App!");
 
         while (true) {
-            System.out.println("\nMENU:");
+            System.out.println(" \n--- ---- ---- ---- ---- ---- ---");
+            System.out.println("MENU:");
             System.out.println("1. View Products");
             System.out.println("2. Add Product to Cart");
             System.out.println("3. Remove Product from Cart");
             System.out.println("4. View Cart");
             System.out.println("5. Checkout");
             System.out.println("6. Exit");
+            System.out.println(" --- ---- ---- ---- ---- ---- ---");
             System.out.print("Enter your choice: ");
 
             int choice;
 
             // Check the input is numeric
             try {
-                choice = scanner.nextInt();
+                choice = in.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid number.");
-                scanner.next();
+                in.next();
                 continue;
             }
 
@@ -130,8 +132,8 @@ public class ShoppingApp {
 
                 case 2: // Add Product
                     System.out.println("\nEnter the product name to add:");
-                    scanner.nextLine();
-                    String addProductName = scanner.nextLine();
+                    in.nextLine();
+                    String addProductName = in.nextLine();
                     Product selectedProduct = null;
                     // Check the product available if available store the object in selectedProduct
                     for (Product p : productList) {  
@@ -146,14 +148,14 @@ public class ShoppingApp {
                         break; // break the case 2
                     }
                     System.out.print("Enter quantity: ");
-                    int quantity = scanner.nextInt();
+                    int quantity = in.nextInt();
                     cart.addItem(selectedProduct, quantity);
                     break;
 
                 case 3: // Remove Product
                     System.out.println("\nEnter the product name to remove:");
-                    scanner.nextLine();
-                    String removeProductName = scanner.nextLine();
+                    in.nextLine();
+                    String removeProductName = in.nextLine();
                     Product removeProduct = null;
                     // Check the product available if available store the object in removeProduct
                     for (Product p : productList) {
@@ -169,7 +171,7 @@ public class ShoppingApp {
                         break;
                     }
                     System.out.print("Enter quantity to remove: ");
-                    int removeQuantity = scanner.nextInt();
+                    int removeQuantity = in.nextInt();
                     cart.removeItem(removeProduct, removeQuantity);
                     break;
 
