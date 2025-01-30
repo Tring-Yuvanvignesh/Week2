@@ -24,7 +24,7 @@ class LinkedList {
         }
     }
 
-    public Integer RemoveFirstElement() {
+    public Integer RemoveFirstElement() {    
         if (head == null) {
             return null;
         }
