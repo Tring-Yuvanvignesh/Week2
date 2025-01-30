@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 class BrowserHistory {
-    private Stack<String> historyStack = new Stack<>();
+    Stack<String> historyStack = new Stack<>();
 
     public void visitPage(String url) {
         historyStack.push(url);
