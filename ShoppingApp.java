@@ -139,6 +139,10 @@ public class ShoppingApp {
 
             switch (choice) {
                 case 1: // View Products
+                     if (productList.isEmpty()) { // if no product
+                         System.out.println("No products available.");
+                         break;
+                     }
                     System.out.println("\nAvailable Products:");
                     for (int i = 0; i < productList.size(); i++) {
                         Product currentProduct = productList.get(i);
@@ -147,6 +151,10 @@ public class ShoppingApp {
                     break;
 
                 case 2: // Add Product
+                  if (productList.isEmpty()) { // if no product
+                      System.out.println("No products available.");
+                      break;
+                  }
                     System.out.println("\nEnter the product name to add:");
                     in.nextLine();
                     String addProductName = in.nextLine();
