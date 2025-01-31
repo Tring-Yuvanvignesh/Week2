@@ -20,10 +20,10 @@ class Product implements ProductDetails {
         this.category = category;
     }
 
-    public String getName() { 
+    public String getName() {
         return name; 
     }
-    public double getPrice() { 
+    public double getPrice() {
         return price; 
     }
     public String getCategory() {
@@ -79,7 +79,9 @@ class ShoppingCart {
             int quantity = entry.getValue();
             System.out.println(product.getName() + " x " + quantity + " = RS " + (product.getPrice() * quantity));
         }
-        System.out.println("Total Price: RS " + calculateTotal());
+        System.out.println("------------------------");
+        System.out.println("Total Price: RS " + calculateTotal());  
+        System.out.println("------------------------");
     }
 
     public void checkout() {
@@ -96,21 +98,23 @@ class ShoppingCart {
 
 // Main Class
 public class ShoppingApp {
+    private static List<Product> productList = new ArrayList<>();  
+    private static ShoppingCart cart = new ShoppingCart();
+    private static boolean flag = true;
     public static void main(String[] args) {
+        
         Scanner in = new Scanner(System.in);
         ShoppingCart cart = new ShoppingCart();
-
+        if(flag){  // one time initialize
+            initializeProducts();
+            flag = false;
+        }
         // Available Products List
-        List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Laptop", 29999.0, "Electronics"));
-        productList.add(new Product("Smart Watch", 1499.0, "Gadgets"));
-        productList.add(new Product("Geared Cycle", 8000.0, "Sports"));
-        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
 
         System.out.println("Welcome to the Shopping App!");
 
         while (true) {
-            System.out.println(" \n--- ---- ---- ---- ---- ---- ---");
+            System.out.println(" \n---  ----  ----  ----  ----  ----  ---");
             System.out.println("MENU:");
             System.out.println("1. View Products");
             System.out.println("2. Add Product to Cart");
@@ -118,7 +122,8 @@ public class ShoppingApp {
             System.out.println("4. View Cart");
             System.out.println("5. Checkout");
             System.out.println("6. Exit");
-            System.out.println(" --- ---- ---- ---- ---- ---- ---");
+            System.out.println("7. Change mode");
+            System.out.println(" ---  ----  ----  ----  ----  ----  ---");
             System.out.print("Enter your choice: ");
 
             int choice;
@@ -198,10 +203,69 @@ public class ShoppingApp {
                     System.out.println("Thank you for shopping ");
                     return;
 
+                case 7:
+                    System.out.println("Welcome to Admin mode");
+                    switchMode();
+                    return;
+
                 default:
                     System.out.println(" Please enter a number between 1 and 6 ");
             }
         }
+    }
+
+    private static void switchMode() {
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n--- Admin Mode ---");
+            System.out.println("1. Add Product to Product List");
+            System.out.println("2. Remove Product from Product List");
+            System.out.println("3. Exit Switch Mode");
+            System.out.println("--- --- --- --- --- ---");
+            System.out.print("Enter your choice: ");
+
+            int choice = in.nextInt();
+            in.nextLine();
+            
+            if (choice == 1) {
+                System.out.print("Enter product name: ");
+                String name = in.nextLine();
+                System.out.print("Enter price: ");
+                double price = in.nextDouble();
+                in.nextLine();
+                System.out.print("Enter category: ");
+                String category = in.nextLine();
+                productList.add(new Product(name, price, category));
+                System.out.println("Product added successfully!");
+            } else if (choice == 2) {
+                System.out.print("Enter product name to remove: ");
+                String removeProductName = in.nextLine();
+                Product removeProduct = null;
+                // Check the product available, if available store the object in removeProduct
+                for (Product p : productList) {
+                    if (p.getName().equalsIgnoreCase(removeProductName)) {
+                        removeProduct = p;
+                        productList.remove(p);
+                        System.out.println("Product successfully removed");
+                        break; 
+                    }
+                }
+                // If removeProduct is null the product is not available in list
+                if (removeProduct == null) {
+                    System.out.println("Product not found!");
+                    break;
+                }
+            } else {
+                main(null);
+                break;
+            }
+        }
+    }
+    private static void initializeProducts() {
+        productList.add(new Product("Laptop", 29999.0, "Electronics"));
+        productList.add(new Product("Smart Watch", 1499.0, "Gadgets"));
+        productList.add(new Product("Geared Cycle", 8000.0, "Sports"));
+        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
     }
 }
 
