@@ -1,11 +1,18 @@
 
 import java.util.*;
 
+interface ProductDetails {
+    String getName();
+    double getPrice();
+    String getCategory();
+} 
+
 // Product Class
-class Product {
+class Product implements ProductDetails {
     private String name;
     private double price;
     private String category;
+    private String brandName;
 
     public Product(String name, double price, String category) {
         this.name = name;
@@ -22,9 +29,13 @@ class Product {
     public String getCategory() {
          return category; 
     }
-
+    public String getBrandName() {
+        return brandName;
+    }
 }
 
+
+// ShoppingCart
 class ShoppingCart {
     private Map<Product, Integer> cartItems = new HashMap<>(); // Storing product in cart
 
@@ -59,16 +70,16 @@ class ShoppingCart {
 
     public void displayCart() {
         if (cartItems.isEmpty()) {
-            System.out.println("Your cart is empty.");
+            System.out.println("Your cart is empty."); // If cart is empty
             return;
         }
         System.out.println("\nYour Shopping Cart:");
         for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            System.out.println(product.getName() + " x " + quantity + " = $" + (product.getPrice() * quantity));
+            System.out.println(product.getName() + " x " + quantity + " = RS " + (product.getPrice() * quantity));
         }
-        System.out.println("Total Price: $" + calculateTotal());
+        System.out.println("Total Price: RS " + calculateTotal());
     }
 
     public void checkout() {
@@ -91,10 +102,10 @@ public class ShoppingApp {
 
         // Available Products List
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Laptop", 1000.0, "Electronics"));
-        productList.add(new Product("Smartphone", 800.0, "Electronics"));
-        productList.add(new Product("Book", 20.0, "Stationery"));
-        productList.add(new Product("Headphones", 100.0, "Accessories"));
+        productList.add(new Product("Laptop", 29999.0, "Electronics"));
+        productList.add(new Product("Smart Watch", 1499.0, "Gadgets"));
+        productList.add(new Product("Geared Cycle", 8000.0, "Sports"));
+        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
 
         System.out.println("Welcome to the Shopping App!");
 
@@ -126,7 +137,7 @@ public class ShoppingApp {
                     System.out.println("\nAvailable Products:");
                     for (int i = 0; i < productList.size(); i++) {
                         Product currentProduct = productList.get(i);
-                        System.out.println((i + 1) + ". " + currentProduct.getName() + " - $"+currentProduct.getPrice()+" ["+currentProduct.getCategory()+"]");
+                        System.out.println((i + 1) + ". " + currentProduct.getName() + " - RS "+currentProduct.getPrice()+" ["+currentProduct.getCategory()+"]");
                     }
                     break;
 
@@ -157,7 +168,7 @@ public class ShoppingApp {
                     in.nextLine();
                     String removeProductName = in.nextLine();
                     Product removeProduct = null;
-                    // Check the product available if available store the object in removeProduct
+                    // Check the product available, if available store the object in removeProduct
                     for (Product p : productList) {
                         if (p.getName().equalsIgnoreCase(removeProductName)) {
                             removeProduct = p;
