@@ -10,9 +10,9 @@ public class ShoppingApp {
         // Available Products List
         List<Product> productList = new ArrayList<>();
         productList.add(new Product("Laptop", 29999.0, "Electronics"));
-        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
         productList.add(new Product("Smart Watch", 1499.0, "Gadgets"));
         productList.add(new Product("Geared Cycle", 8000.0, "Sports"));
+        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
 
         System.out.println("Welcome to the Shopping App!");
 
@@ -75,7 +75,7 @@ public class ShoppingApp {
                     in.nextLine();
                     String removeProductName = in.nextLine();
                     Product removeProduct = null;
-                    // Check the product available if available store the object in removeProduct
+                    // Check the product available, if available store the object in removeProduct
                     for (Product p : productList) {
                         if (p.getName().equalsIgnoreCase(removeProductName)) {
                             removeProduct = p;
