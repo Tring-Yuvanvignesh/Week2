@@ -1,10 +1,11 @@
 package Task;
 
 // product class
-class Product {
+class Product implements ProductDetails {
     private String name;
     private double price;
     private String category;
+    private String brandName;
 
     public Product(String name, double price, String category) {
         this.name = name;
@@ -21,5 +22,7 @@ class Product {
     public String getCategory() {
          return category; 
     }
-
+    public String getBrandName() {
+        return brandName;
+    }
 }

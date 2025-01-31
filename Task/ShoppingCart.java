@@ -36,16 +36,16 @@ class ShoppingCart {
 
     public void displayCart() {
         if (cartItems.isEmpty()) {
-            System.out.println("Your cart is empty.");
+            System.out.println("Your cart is empty."); // If cart is empty
             return;
         }
         System.out.println("\nYour Shopping Cart:");
         for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            System.out.println(product.getName() + " x " + quantity + " = $" + (product.getPrice() * quantity));
+            System.out.println(product.getName() + " x " + quantity + " = RS " + (product.getPrice() * quantity));
         }
-        System.out.println("Total Price: $" + calculateTotal());
+        System.out.println("Total Price: RS " + calculateTotal());
     }
 
     public void checkout() {

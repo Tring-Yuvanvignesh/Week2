@@ -9,10 +9,10 @@ public class ShoppingApp {
 
         // Available Products List
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Laptop", 1000.0, "Electronics"));
-        productList.add(new Product("Smartphone", 800.0, "Electronics"));
-        productList.add(new Product("Book", 20.0, "Stationery"));
-        productList.add(new Product("Headphones", 100.0, "Accessories"));
+        productList.add(new Product("Laptop", 29999.0, "Electronics"));
+        productList.add(new Product("Smartphone", 25000.0, "Electronics"));
+        productList.add(new Product("Smart Watch", 1499.0, "Gadgets"));
+        productList.add(new Product("Geared Cycle", 8000.0, "Sports"));
 
         System.out.println("Welcome to the Shopping App!");
 
@@ -44,7 +44,7 @@ public class ShoppingApp {
                     System.out.println("\nAvailable Products:");
                     for (int i = 0; i < productList.size(); i++) {
                         Product currentProduct = productList.get(i);
-                        System.out.println((i + 1) + ". " + currentProduct.getName() + " - $"+currentProduct.getPrice()+" ["+currentProduct.getCategory()+"]");
+                        System.out.println((i + 1) + ". " + currentProduct.getName() + " - RS "+currentProduct.getPrice()+" ["+currentProduct.getCategory()+"]");
                     }
                     break;
 
