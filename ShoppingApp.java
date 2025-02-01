@@ -2,11 +2,18 @@
 import java.util.*;
 
 interface ProductDetails {
+   // Getter and Setter
    String getName();
 
    double getPrice();
 
    String getCategory();
+
+   void setName(String anme);
+
+   void setPrice(double price);
+
+   void setCategory(String category);
 }
 
 // Product Class
@@ -14,7 +21,6 @@ class Product implements ProductDetails {
    private String name;
    private double price;
    private String category;
-   private String brandName;
 
    public Product(String name, double price, String category) {
       this.name = name;
@@ -34,14 +40,22 @@ class Product implements ProductDetails {
       return category;
    }
 
-   public String getBrandName() {
-      return brandName;
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public void setPrice(double price) {
+      this.price = price;
+   }
+
+   public void setCategory(String category) {
+      this.category=category;
    }
 }
 
 // ShoppingCart
 class ShoppingCart {
-   private Map<Product, Integer> cartItems = new HashMap<>(); // Storing product in cart
+   Map<Product, Integer> cartItems = new HashMap<>(); // Storing product in cart
 
    public void addItem(Product product, int quantity) {
       cartItems.put(product, cartItems.getOrDefault(product, 0) + quantity); // 0 + quantity (or)
@@ -201,6 +215,10 @@ public class ShoppingApp {
                break;
 
             case 3: // Remove Product
+               if(cart.cartItems.isEmpty()){ // Check the cart is empty or not
+                  System.err.println("Your cart is empty");
+                  break;
+               }
                System.out.println("\nEnter the product name to remove:");
                in.nextLine();
                String removeProductName = in.nextLine();
@@ -218,9 +236,26 @@ public class ShoppingApp {
                   System.out.println("Product not found!");
                   break;
                }
-               System.out.print("Enter quantity to remove: ");
-               int removeQuantity = in.nextInt();
-               cart.removeItem(removeProduct, removeQuantity);
+               int removequantity = 0;
+               while (true) {
+                  System.out.println("Enter quantity to remove: ");
+                  try{
+                     removequantity = in.nextInt();
+                     in.nextLine();
+                     if(removequantity < 0){
+                        throw new IllegalArgumentException("Quantity must be positive");
+                     }
+                     break;
+                  }
+                  catch(IllegalArgumentException e){
+                     System.out.println(e.getMessage());
+                  }
+                  catch(InputMismatchException e){
+                     System.out.println("Invalid Quantity! Please enter a valid numeric value.");
+                     in.nextLine();
+                  }
+               }
+               cart.removeItem(removeProduct, removequantity);
                break;
 
             case 4: // View Cart
@@ -286,7 +321,7 @@ public class ShoppingApp {
                   System.out.print("Enter category: ");
                   category = in.nextLine();
                   if(!isValid(category)){
-                     throw new IllegalArgumentException("Category contain only alphabet");
+                     throw new IllegalArgumentException("Category can only contain alphabets");
                   }
                   break;
                }
@@ -294,8 +329,20 @@ public class ShoppingApp {
                   System.out.println(e.getMessage());
                }
             }
-            productList.add(new Product(name, price, category));
-            System.out.println("Product added successfully!");
+            boolean flag = false;
+            for(Product currProduct:productList){
+               if(currProduct.getName().equalsIgnoreCase(name)){  // Check the product already in the product list
+                  currProduct.setPrice(price); // updatating the details
+                  currProduct.setCategory(category);
+                  System.out.println("Product Altered successfully");
+                  flag = true;
+                  break;
+               }
+            }
+            if (!flag) {
+               productList.add(new Product(name, price, category)); // only execute if the item is new
+               System.out.println("Product added successfully!");
+            }  
          } else if (choice == 2) {
             System.out.print("Enter product name to remove: ");
             String removeProductName = in.nextLine();
@@ -312,7 +359,6 @@ public class ShoppingApp {
             // If removeProduct is null the product is not available in list
             if (removeProduct == null) {
                System.out.println("Product not found!");
-               break;
             }
          } else {
             main(null);
