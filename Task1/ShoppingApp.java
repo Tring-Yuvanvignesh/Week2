@@ -4,14 +4,18 @@ import java.util.*;
 // Main Class
 public class ShoppingApp {
     static List<Product> productList = new ArrayList<>();
-    private static ShoppingCart cart = new ShoppingCart();
+    static ShoppingCart cart = new ShoppingCart();
     static AdminMode admin = new AdminMode();
-    private static boolean flag = true;
+    static boolean flag = true;
+    static boolean flag2 = true;
  
     public static void main(String[] args) {
  
        Scanner in = new Scanner(System.in);
-       ShoppingCart cart = new ShoppingCart();
+       if (flag2) {  // for avoiding re initialize the cart when switching from admin mode
+         ShoppingCart cart = new ShoppingCart();
+         flag2 = false;
+      }
        if (flag) { // one time initialize
           admin.initializeProducts();
           flag = false;
@@ -109,20 +113,20 @@ public class ShoppingApp {
                 System.out.println("\nEnter the product name to remove:");
                 in.nextLine();
                 String removeProductName = in.nextLine();
-                Product removeProduct = null;
-                // Check the product available, if available store the object in removeProduct
-                for (Product p : productList) {
-                   if (p.getName().equalsIgnoreCase(removeProductName)) {
-                      removeProduct = p;
-                      break; // break the case 3
-                   }
-                }
+               //  Product removeProduct = null;
+               //  // Check the product available, if available store the object in removeProduct
+               //  for (Product p : productList) {
+               //     if (p.getName().equalsIgnoreCase(removeProductName)) {
+               //        removeProduct = p;
+               //        break; // break the case 3
+               //     }
+               //  }
  
-                // If removeProduct is null the product is not available in list
-                if (removeProduct == null) {
-                   System.out.println("Product not found!");
-                   break;
-                }
+               //  // If removeProduct is null the product is not available in list
+               //  if (removeProduct == null) {
+               //     System.out.println("Product not found!");
+               //     break;
+               //  }
                 int removequantity = 0;
                 while (true) {
                    System.out.println("Enter quantity to remove: ");
@@ -142,7 +146,7 @@ public class ShoppingApp {
                       in.nextLine();
                    }
                 }
-                cart.removeItem(removeProduct, removequantity);
+                cart.removeItem(removeProductName, removequantity);
                 break;
  
              case 4: // View Cart
