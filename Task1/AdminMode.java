@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class AdminMode extends ShoppingApp {
 
     ShoppingApp app = new ShoppingApp();
-    
+
     public void switchMode() {
        Scanner in = new Scanner(System.in);
        while (true) {
@@ -16,8 +16,15 @@ public class AdminMode extends ShoppingApp {
           System.out.println("3. Exit Switch Mode");
           System.out.println("--- --- --- --- --- ---");
           System.out.print("Enter your choice: ");
- 
-          int choice = in.nextInt();
+        
+          int choice;
+          try {
+             choice = in.nextInt();
+          } catch (InputMismatchException e) {
+             System.out.println("Please enter a valid number.");
+             in.next();
+             continue;
+          }
           in.nextLine();
  
           if (choice == 1) {
@@ -70,7 +77,11 @@ public class AdminMode extends ShoppingApp {
                 System.out.println("Product added successfully!");
              }  
           } else if (choice == 2) {
-             System.out.print("Enter product name to remove: ");
+             if(productList.isEmpty()){  // If no product available in productList
+                System.out.println("No products available");
+                continue;
+             }
+             System.out.println("Enter product name to remove: ");
              String removeProductName = in.nextLine();
              Product removeProduct = null;
              // Check the product available, if available store the object in removeProduct
@@ -86,9 +97,11 @@ public class AdminMode extends ShoppingApp {
              if (removeProduct == null) {
                 System.out.println("Product not found!");
              }
-          } else {
+          } else if(choice == 3) {
              app.main(null);
              break;
+          } else{
+            System.out.println(" Please enter a number between 1 and 3 ");
           }
        }
     }
