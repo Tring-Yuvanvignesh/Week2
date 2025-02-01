@@ -113,20 +113,6 @@ public class ShoppingApp {
                 System.out.println("\nEnter the product name to remove:");
                 in.nextLine();
                 String removeProductName = in.nextLine();
-               //  Product removeProduct = null;
-               //  // Check the product available, if available store the object in removeProduct
-               //  for (Product p : productList) {
-               //     if (p.getName().equalsIgnoreCase(removeProductName)) {
-               //        removeProduct = p;
-               //        break; // break the case 3
-               //     }
-               //  }
- 
-               //  // If removeProduct is null the product is not available in list
-               //  if (removeProduct == null) {
-               //     System.out.println("Product not found!");
-               //     break;
-               //  }
                 int removequantity = 0;
                 while (true) {
                    System.out.println("Enter quantity to remove: ");
