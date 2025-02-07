@@ -29,7 +29,6 @@ public class AdminMode extends ShoppingApp {
           if (choice == 1) {
              System.out.print("Enter product name: ");
              String name = in.nextLine();
-             System.out.print("Enter price: ");
              double price = 0;
              while (true) {
                  try {
