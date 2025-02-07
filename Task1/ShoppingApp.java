@@ -12,7 +12,7 @@ public class ShoppingApp {
     public static void main(String[] args) {
  
        Scanner in = new Scanner(System.in);
-       if (flag2) {  // for avoiding re initialize the cart when switching from admin mode
+       if (flag2) {  // for avoiding re initialize the cart after switching from admin mode
          ShoppingCart cart = new ShoppingCart();
          flag2 = false;
       }
@@ -94,10 +94,10 @@ public class ShoppingApp {
                       }
                       break;
                    }
-                   catch(IllegalArgumentException e){
+                   catch(IllegalArgumentException e) {
                       System.out.println(e.getMessage());
                    }
-                   catch(InputMismatchException e){
+                   catch(InputMismatchException e) {
                       System.out.println("Invalid Quantity! Please enter a valid numeric value.");
                       in.nextLine();
                    }

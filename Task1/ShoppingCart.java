@@ -3,7 +3,7 @@ package Task1;
 import java.util.*;
 
 // ShoppingCart
-class ShoppingCart {
+public class ShoppingCart {
    Map<Product, Integer> cartItems = new HashMap<>(); // Storing product in cart
 
    public void addItem(Product product, int quantity) {
