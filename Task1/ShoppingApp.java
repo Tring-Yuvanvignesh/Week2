@@ -140,8 +140,27 @@ public class ShoppingApp {
                 break;
  
              case 5: // Checkout
-                cart.checkout();
-                break; // for continue Purchase
+                boolean flag1 = true;
+                for(Map.Entry<Product, Integer> cartProduct: cart.cartItems.entrySet()){
+                  for(Product listProduct:productList){
+                     flag1=false;
+                     if( listProduct.getName().equals(cartProduct.getKey().getName())){
+                        flag1 = true;
+                        break;
+                     }
+                  }
+                  if(flag1 == false){
+                     System.out.println(cartProduct.getKey().getName()+" Not available Right Now Please remove "+cartProduct.getKey().getName()+" from your cart");
+                     break;
+                  }
+                }
+                if(flag1){
+                  cart.checkout();
+                  break;
+                }
+                else{
+                  break;
+                }
  
              case 6: // Exit
                 System.out.println("Thank you for shopping ");
