@@ -3,12 +3,19 @@ import java.util.*;
 
 // Main Class
 public class ShoppingApp {
-    static List<Product> productList = new ArrayList<>();
-    static ShoppingCart cart = new ShoppingCart();
-    static AdminMode admin = new AdminMode();
-    static boolean flag = true;
-    static boolean flag2 = true;
- 
+    static List<Product> productList;
+    static ShoppingCart cart;
+    static AdminMode admin;
+    static boolean flag;
+    static boolean flag2;
+    
+    ShoppingApp(){
+      this.productList = new ArrayList<>();
+      this.ShoppingCart = new ShoppingCart();
+      this.AdminMode = new AdminMode();
+      this.flag = true;
+      this.flag2 = true;
+    }
     public static void main(String[] args) {
  
        Scanner in = new Scanner(System.in);
@@ -164,6 +171,7 @@ public class ShoppingApp {
  
              case 6: // Exit
                 System.out.println("Thank you for shopping ");
+                in.close();
                 return;
  
              case 7:
